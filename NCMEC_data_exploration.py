@@ -34,8 +34,7 @@ child_data["missingfromdate"] = pd.to_datetime(child_data.missingfromdate)
 child_data["birthdate"] = pd.to_datetime(child_data.birthdate)
 
 
-# Create new column with the amount of days elapsing between the date missing 
-#	and the date reported missing
+# Create new column with the amount of days elapsing between the date missing and the date reported missing
 child_data['days_missing_prior_report'] = (child_data.missingreporteddate - \
 		  child_data.missingfromdate).astype('timedelta64[D]')
 
@@ -93,14 +92,14 @@ print child_data.ix[child_data['days_missing_prior_report']< 0, \
 """ 
 
 I believe these 7 rows include incorrect dates in either the missingfromdate
-field or the missingreporteddate field because each case is indicating
+field or the missingreporteddate field because each of these rows indicate
 that the child was reported missing before the date they actually went missing
 (which could not happen in the real world)
 
 """
 
 
-# Create bar graphs showing volume for frequently occuring unique values in columns
+# Create bar graphs showing volume for frequency of values in columns with attributes of child
 
 def BarGraphs(df):
 	plot_cols = ['sex','race','age_at_missing','casetype','missingfromstate']
@@ -128,7 +127,7 @@ BarGraphs(child_data)
 
 
 
-# Visualize count open cases missing by data reported missing
+# Visualize count open cases missing by date reported missing
 
 child_data['year_reported_missing'] = pd.DatetimeIndex(child_data['missingreporteddate']).year
 child_data['month_reported_missing'] = pd.DatetimeIndex(child_data['missingreporteddate']).month
@@ -144,8 +143,7 @@ It makes sense that the greatest number of open cases (32% of total media-ready 
 were reported in the past two years as cases from prior years have likely been resolved.
 """
 
-# Plot count of active missing children cases by month/year reported 
-# 	(using year and month as index)
+# Plot count of active missing children cases by month/year reported (using year and month as index)
 
 
 fig = plt.figure()
@@ -157,8 +155,7 @@ count_by_date.plot(kind='line', ax = axes, legend=False)
 plt.show()
 
 
-# Reset index so year and month reported missing are listed as columns in dataframe
-#	 to plot year over year monthly counts
+# Reset index so year and month reported missing are listed as columns in dataframe to plot year over year monthly counts
 
 count_by_date  = pd.DataFrame(child_data.groupby(['year_reported_missing', 'month_reported_missing']).size());
 count_by_date.columns = ['count']
