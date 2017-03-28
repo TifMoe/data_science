@@ -140,7 +140,7 @@ print count_by_date
 
 """
 It makes sense that the greatest number of open cases (32% of total media-ready open cases) 
-were reported in the past two years as cases from prior years have likely been resolved.
+were reported last year as cases from prior years have likely been resolved.
 """
 
 # Plot count of active missing children cases by month/year reported (using year and month as index)
