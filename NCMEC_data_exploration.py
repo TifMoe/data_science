@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 # Import missing child data from NCMEC dataset
 child_data = pd.read_csv('MediaReadyActiveCases_03082017.csv')
 
+
 # Explore dataset
 print child_data.head(20)
 print list(child_data)
